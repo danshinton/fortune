@@ -1,0 +1,22 @@
+# @no-log
+GET {{BASE_URL}}/api/v1/fortune
+Accept: application/json
+
+###
+
+# @no-log
+POST {{BASE_URL}}/api/v1/fortune
+Authorization: {{BEARER_TOKEN}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "fortune": "{{FORTUNE_1}}"
+}
+
+###
+
+# @no-log
+GET {{BASE_URL}}/api/v1/fortune/all
+Authorization: {{BEARER_TOKEN}}
+Accept: application/json

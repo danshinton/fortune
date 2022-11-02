@@ -1,0 +1,13 @@
+{
+  "$id": "https://shinton.net/fortune-api-fortune-post.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fortune API fortune POST call",
+  "description": "The body of the call to upload a new fortune",
+  "required": [ "fortune" ],
+  "type": "object",
+  "properties": {
+    "fortune": {
+      "type": "string"
+    }
+  }
+}

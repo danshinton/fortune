@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  generateName: fortune-api-
+  labels:
+    app: fortune-api
+    tier: "frontend"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fortune-api
+        tier: "frontend"
+    spec:
+      containers:
+        - name: "fortune-api"
+          image: "us.gcr.io/shinton-net/fortune-api:latest"
+          env:
+            - name: FORTUNE_LOG_LEVEL
+            - name: FORTUNE_JWT_SIGNING_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fortune-api-signing-key
+                  key: key
+                  optional: false
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 80
+              protocol: "TCP"
+          volumeMounts:
+            - mountPath: "/fortune-data"
+              name: "fortune-data"
+      nodeSelector:
+        role: "frontend"
+      restartPolicy: "Always"
+      volumes:
+        - name: "fortune-data"
+          gcePersistentDisk:
+            pdName: "fortune-data"
+            readOnly: false
+            fsType: "ext4"

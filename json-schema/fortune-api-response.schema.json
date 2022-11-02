@@ -1,0 +1,22 @@
+{
+  "$id": "https://shinton.net/fortune-api-response.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "The Fortune API response",
+  "description": "The standard response object for calls to the Fortune API",
+  "required": [ "status", "code" ],
+  "type": "object",
+  "properties": {
+    "status": {
+      "enum": [ "success", "error" ]
+    },
+    "code": {
+      "type": "number"
+    },
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": [ "array", "object" ]
+    }
+  }
+}
